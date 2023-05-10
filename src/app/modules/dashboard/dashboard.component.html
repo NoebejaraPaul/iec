@@ -1,0 +1,86 @@
+<div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="20px" class="stats-cards">
+    <mat-card fxFlex="25">
+        <app-widget-card label="Registered Voters" [total]="totalUsers"  [data]="cards"></app-widget-card>
+    </mat-card>
+    
+    <mat-card fxFlex="25">
+        <app-widget-card label="Party Candidates" [total]="totalCandidatesInPollingDevision" percentage="30" [data]="cards"></app-widget-card>
+    </mat-card>
+    <mat-card fxFlex="25">
+        <app-widget-card label="Casted Votes" [total]="totalPollingStations" percentage="40" [data]="cards"></app-widget-card>
+    </mat-card>
+    <mat-card fxFlex="25">
+        <app-widget-card label="Polling Stations" [total]="totalPollingStations" percentage="20" [data]="cards"></app-widget-card>
+    </mat-card>
+</div>
+
+<br>
+
+<mat-divider></mat-divider>
+
+<br>
+
+<div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="20px">
+    <div fxFlex="60">
+        <div class="mat-elevation-z8">
+            <table mat-table [dataSource]="dataSource">
+
+                <!-- Position Column -->
+                <ng-container matColumnDef="position">
+                    <th mat-header-cell *matHeaderCellDef> No. </th>
+                    <td mat-cell *matCellDef="let element"> {{element.position}} </td>
+                </ng-container>
+
+                <!-- Name Column -->
+                <ng-container matColumnDef="name">
+                    <th mat-header-cell *matHeaderCellDef> Polling Division </th>
+                    <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+                </ng-container>
+
+                <!-- constituencies Column -->
+                <ng-container matColumnDef="constituencies">
+                    <th mat-header-cell *matHeaderCellDef> Total Candidates </th>
+                    <td mat-cell *matCellDef="let element"> {{element.constituencies}} </td>
+                </ng-container>
+
+                <!-- villages Column -->
+                <ng-container matColumnDef="villages">
+                    <th mat-header-cell *matHeaderCellDef> Villages </th>
+                    <td mat-cell *matCellDef="let element"> {{element.villages}} </td>
+                </ng-container>
+
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            </table>
+
+            <mat-paginator [pageSizeOptions]="[5, 10, 20]"></mat-paginator>
+        </div>
+
+    </div>
+    <div fxFlex="40">
+        <app-widget-pie [data]="pieChart"></app-widget-pie>
+    </div>
+</div>
+
+<br>
+<br>
+<br>
+
+<!-- <h1>Dashboard</h1>
+
+<p>Total candidates: {{ totalCandidates }}</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Polling Division</th>
+      <th>Total Candidates</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let division of pollingDivisions">
+      <td>{{ division.name }}</td>
+      <td>{{ division.totalCandidates }}</td>
+    </tr>
+  </tbody>
+</table> -->
